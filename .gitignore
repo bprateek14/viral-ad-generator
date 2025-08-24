@@ -205,3 +205,32 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# uv virtual environment and lock file
+.venv/
+uv.lock
+
+# pyproject.toml build artifacts
+__pypackages__/
+dist/
+build/
+*.egg-info/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# VSCode settings
+.vscode/
+
+# Secrets and generated data
+.env
+secrets/*
+secrets/.gitkeep
+output/stitched_videos/*
+!output/stitched_videos/.gitkeep
+output/videos/*
+!output/videos/.gitkeep
+output/frames/*
+!output/frames/.gitkeep
+data/*
+!data/.gitkeep

@@ -1,0 +1,12 @@
+[gcp]
+project_id = "test-prateek-bandi-5ocnz4"
+location = "us-central1"
+credentials_path = "/Users/prateekbandi/Desktop/templates/viral-ad-generator/secrets/gcp-credentials.json"
+
+[tts]
+voice = "en-US-Wavenet-F"
+language_code = "en-US"
+
+[settings]
+output_dir = "outputs"
+video_duration = 15
