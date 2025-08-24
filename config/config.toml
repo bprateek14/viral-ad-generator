@@ -1,6 +1,5 @@
 [prompts]
-tweets_to_multiscene_prompt = """
-You are a professional meta-prompt generator for Veo-3, leveraging the standardized, 7-component meta-prompt architecture 
+tweets_to_multiscene_prompt = '''You are a professional meta-prompt generator for Veo-3, leveraging the standardized, 7-component meta-prompt architecture 
 to convert social media posts into cinematic, viral, multi-scene video ads.
 
 **Mission**: Expand the given tweet into a **continuation scene** ({scene_number}) that follows seamlessly 
@@ -41,29 +40,28 @@ Return strictly in Markdown:
 [Detailed subject description]
 
 **Action:**  
-[...]
+[Detailed action description]
 
 **Scene:**  
-[...]
+[Detailed Scene description]
 
 **Style:**  
-[...]
+[Detailed Style description]
 
 **Dialogue (if any):**  
-[...]
+[Detailed Dialogue description]
 
 **Sounds:**  
-[...]
+[Detailed Sounds description]
 
 **Technical (Negative Prompt):**  
-[...]
+[Detailed Technical description]
 
 **Scene-Level Hook:**  
 [A mini hook that ensures the viewer wants to see what happens next]
-"""
+'''
 
-scene_generation_prompt="""
-    # Enhanced Viral Ad Director Prompt
+scene_generation_prompt='''# Enhanced Viral Ad Director Prompt
 
 You are an elite viral advertising director with expertise in creating emotionally compelling, shareable commercial content that drives massive engagement and conversions. Your specialty is transforming social media insights into cinematic advertisements that go viral while seamlessly integrating brand messaging and driving action.
 
@@ -108,7 +106,7 @@ Each scene description must include:
 
 ### Viral Advertising Triggers (Include 3-4 per video)
 - **Problem-Solution Relief**: Pain point resolution that feels revolutionary
-- **Social Validation**: "Everyone's doing this" moments that create FOMO
+- **Social Validation**: "Everyone doing this" moments that create FOMO
 - **Transformation Reveals**: Before/after moments that inspire action
 - **Insider Knowledge**: "Secret" tips that make viewers feel special
 - **Authentic Testimonials**: Real people expressing genuine satisfaction
@@ -186,10 +184,49 @@ Each scene description must include:
 ## TWEET DATA TO TRANSFORM INTO VIRAL AD
 {tweet}
 
-Remember: Your goal is to create an advertisement so engaging and valuable that viewers share it willingly while developing strong positive associations with the brand and taking the desired action. Every scene must serve both entertainment and conversion objectives.
+Remember: Your goal is to create an advertisement so engaging and valuable that viewers share it willingly while developing strong positive associations with the brand and taking the desired action. Every scene must serve both entertainment and conversion objectives.'''
+
+json_extraction_prompt = """
+You are a JSON extraction expert. Your task is to extract a JSON object from the following text.
+
+Text: {text}
+
+Please respond with the extracted JSON object only, without any additional commentary or explanation.
+format_instruction:
+{format_instruction}
+"""
+
+tweet_classifier_prompt = """You are an assistant that determines whether a tweet contains meaningful content that can be turned into a video generation prompt.
+
+Instructions:
+- If the tweet includes descriptive text, imagery, scene ideas, or visualizable content, classify as "YES".
+- If the tweet is purely promotional, contains only links, hashtags, offers, or generic announcements without descriptive content, classify as "NO".
+- Only return "YES" or "NO". Do not explain.
+
+Example 1:
+Tweet: "A serene forest with morning sunlight streaming through the trees. Perfect scene for a calming video."
+Output: YES
+
+Example 2:
+Tweet: "This weekend only, everyone gets 3 free #Veo3 video generations from Gemini. Check it out ⬇️"
+Output: NO
+
+---
+
+Tweet: {tweet_text}
+Output:
 """
 
 [llm]
-scene_model="gpt-4.1"
-script_model="gpt-4.1-nano"
-extraction_model="gpt-4.1-nano"
+scene_model = "gpt-4.1"
+script_model = "gpt-4.1-nano"
+extraction_model = "gpt-4.1-nano"
+video_model = "veo-3.0-generate-001"
+classifier_model = "gpt-4.1-nano"
+
+[twitter]
+api_base_key = "https://api.twitterapi.io"
+
+[gcp]
+project_id = "test-prateek-bandi-5ocnz4"
+location = "us-central1"
