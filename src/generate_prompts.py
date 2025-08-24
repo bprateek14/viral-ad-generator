@@ -60,7 +60,7 @@ class PromptGenerator:
         self.output_parser = JsonOutputParser(pydantic_object=Storyboard)
         self.json_extraction_prompt_tempelate = PromptTemplate(
             input_variables=["text"],
-            template=self.config['prompts']['json_extract_prompt'],
+            template=self.config['prompts']['json_extraction_prompt'],
             partial_variables={"format_instruction": self.output_parser.get_format_instructions()}
         )
 

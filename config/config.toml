@@ -226,6 +226,9 @@ classifier_model = "gpt-4.1-nano"
 
 [twitter]
 api_base_key = "https://api.twitterapi.io"
+min_likes = 100
+max_results = 20
+page_size = 20
 
 [gcp]
 project_id = "test-prateek-bandi-5ocnz4"

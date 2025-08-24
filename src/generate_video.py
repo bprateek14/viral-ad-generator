@@ -119,7 +119,7 @@ class VideoGenerator:
             print(f"⚠️ Failed to read last frame: {video_path}")
             return None
 
-    def process_dataframe(self, df, out_video_root="../videos", out_frame_root="../frames", resume=True):
+    def process_dataframe(self, df, out_video_root="../output/videos", out_frame_root="../output/frames", resume=True):
         """
         Processes a DataFrame of video scripts, generates videos and extracts last frames.
 
@@ -194,7 +194,7 @@ class VideoGenerator:
         print(f"🎬 Stitched video saved: {output_path}")
         return output_path
 
-    def stitch_dataframe_videos(self, df, out_dir="../stitched_videos"):
+    def stitch_dataframe_videos(self, df, out_dir="../output/stitched_videos"):
         """
         Stitches videos for each row in the DataFrame and saves them.
 

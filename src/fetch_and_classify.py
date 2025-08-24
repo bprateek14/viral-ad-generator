@@ -32,6 +32,9 @@ class TweetFetcherClassifier:
         self.headers = {"X-API-Key": self.api_key}
         self.classifier_prompt = self.config['prompts']['tweet_classifier_prompt']
         self.llm = ChatOpenAI(model=self.config['llm']['classifier_model'], temperature=0.5)
+        self.min_likes = self.config['twitter'].get('min_likes', 100)
+        self.max_results = self.config['twitter'].get('max_results', 200)
+        self.page_size = self.config['twitter'].get('page_size', 50)
 
     def search_viral_tweets(self, query, min_likes=100, max_results=200, page_size=50):
         """
@@ -122,7 +125,9 @@ class TweetFetcherClassifier:
         Returns:
             pd.DataFrame: Classified DataFrame.
         """
-        tweets = self.search_viral_tweets(query)
+        tweets = self.search_viral_tweets(query, min_likes=self.min_likes,
+                                          max_results=self.max_results,
+                                          page_size=self.page_size)
         info = self.extract_viral_info(tweets)
         df = pd.DataFrame(info)
         df = self.classify_tweets(df)
